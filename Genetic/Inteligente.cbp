@@ -42,6 +42,7 @@
 		<Unit filename="environment.h" />
 		<Unit filename="estado.cpp" />
 		<Unit filename="estado.h" />
+		<Unit filename="genetic.h" />
 		<Unit filename="graph.cpp" />
 		<Unit filename="graph.h" />
 		<Unit filename="main.cpp" />

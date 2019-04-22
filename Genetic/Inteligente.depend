@@ -62,3 +62,64 @@
 1554302749 source:c:\c++\inteligente\operators.cpp
 	"operators.h"
 
+1554171606 source:c:\c++\genetic\agent.cpp
+	"agent.h"
+
+1554174335 c:\c++\genetic\agent.h
+	<iostream>
+
+1554873453 source:c:\c++\genetic\astar.cpp
+	"astar.h"
+	<queue>
+	<unordered_map>
+	<iostream>
+	<map>
+	<algorithm>
+
+1554870832 c:\c++\genetic\astar.h
+	"graph.h"
+
+1554868522 c:\c++\genetic\graph.h
+	<vector>
+	"estado.h"
+
+1554859992 c:\c++\genetic\estado.h
+
+1554871631 source:c:\c++\genetic\bfs.cpp
+	"bfs.h"
+	<list>
+	<iostream>
+
+1554861692 c:\c++\genetic\bfs.h
+	"graph.h"
+	<vector>
+
+1554870959 source:c:\c++\genetic\environment.cpp
+	"environment.h"
+
+1554179476 c:\c++\genetic\environment.h
+	<iostream>
+	"agent.h"
+	"graph.h"
+
+1554063633 source:c:\c++\genetic\estado.cpp
+	"estado.h"
+
+1554873078 source:c:\c++\genetic\graph.cpp
+	<vector>
+	<iostream>
+	"graph.h"
+
+1555893847 source:c:\c++\genetic\main.cpp
+	<iostream>
+	<vector>
+	<string>
+	"graph.h"
+	"bfs.h"
+	"astar.h"
+	"environment.h"
+	"genetic.h"
+
+1555893899 c:\c++\genetic\genetic.h
+	<math.h>
+

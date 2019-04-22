@@ -5,6 +5,7 @@
 #include "bfs.h"
 #include "astar.h"
 #include "environment.h"
+#include "genetic.h"
 
 using namespace std;
 
@@ -15,14 +16,25 @@ int main()
     Env1.scan_state_from_file();
     Estado* source = new Estado(Env1.getAgent().getX(),Env1.getAgent().getY(),Env1.getAgent().getFacing());
     Estado* destination = new Estado(Env1.getX_Target(),Env1.getY_Target(),2);
-    Env1.traverseMatrixMakeStateGraph();
+    //Env1.traverseMatrixMakeStateGraph();
    // Env1.getGraph()->printGraph();
     //aStar(Env1.getGraph(), source, destination);
     //printBfsShortestDistance(Env1.getGraph(), source, destination, Env1.getN_Rows()*Env1.getN_Cols()*NUMBERDIRECTIONS, Env1.getN_Rows(), Env1.getN_Cols(), NUMBERDIRECTIONS);
     //cout << endl;
     //getAStarShortestPath(Env1.getGraph(), source, destination, Env1.getN_Rows()*Env1.getN_Cols()*NUMBERDIRECTIONS, Env1.getN_Rows(), Env1.getN_Cols(), NUMBERDIRECTIONS);
     //Env1.traverseShortestPath(aStar(Env1.getGraph(), source, destination, Env1.getN_Rows()*Env1.getN_Cols()*NUMBERDIRECTIONS, Env1.getN_Rows(), Env1.getN_Cols(), NUMBERDIRECTIONS));
-    Env1.traverseShortestPath(getBFSShortestPath(Env1.getGraph(), source, destination, Env1.getN_Rows()*Env1.getN_Cols()*NUMBERDIRECTIONS,Env1.getN_Rows(), Env1.getN_Cols(), NUMBERDIRECTIONS));
+    //Env1.traverseShortestPath(getBFSShortestPath(Env1.getGraph(), source, destination, Env1.getN_Rows()*Env1.getN_Cols()*NUMBERDIRECTIONS,Env1.getN_Rows(), Env1.getN_Cols(), NUMBERDIRECTIONS));
+
+    vector<Chromossome> Population;
+    for (int i = 0; i < 50; i++)
+    {
+        Population.push_back(SpawnChromossome());
+    }
+
+    for (int i = 0; i < 50; i ++)
+    {
+        cout << Population[i].CalculateFitness(source->getX(), source->getY(), source->getDirection(), destination->getX(), destination->getY()) << endl;
+    }
 
 //    int M[20][20] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 //                     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
