@@ -7,6 +7,9 @@
 #define WALL        27
 #define TARGET	    28
 #define NONE        -1
+#define PONTOINTERMEDIARIO 29
+#define PONTOINTERMEDIARIO2 30
+#define PONTOINTERMEDIARIO3 31
 
 #define MAX_ROWS    20
 #define MAX_COLS    20
@@ -29,6 +32,10 @@ class Environment {
     void print_state();
     void move_robot(int direction);
     void rotate_robot(int clock_or_counterclock_90_degrees);
+
+    void AddPontoIntermediarioToStateMatrix(int x, int y, int npontointermediario);
+
+    //Primeira tarefa:
     void addForwardWalkToGraph(int ux, int uy, int udirection);
     void addRotationClockwiseToGraph(int ux, int uy, int udirection);
     void addRotationAnticlockwiseToGraph(int ux, int uy, int udirection);

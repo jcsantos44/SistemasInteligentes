@@ -123,3 +123,73 @@
 1555893899 c:\c++\genetic\genetic.h
 	<math.h>
 
+1554171606 source:c:\c++\sistemasinteligentes\genetic\agent.cpp
+	"agent.h"
+
+1554174335 c:\c++\sistemasinteligentes\genetic\agent.h
+	<iostream>
+
+1554873453 source:c:\c++\sistemasinteligentes\genetic\astar.cpp
+	"astar.h"
+	<queue>
+	<unordered_map>
+	<iostream>
+	<map>
+	<algorithm>
+
+1554870832 c:\c++\sistemasinteligentes\genetic\astar.h
+	"graph.h"
+
+1554868522 c:\c++\sistemasinteligentes\genetic\graph.h
+	<vector>
+	"estado.h"
+
+1554859992 c:\c++\sistemasinteligentes\genetic\estado.h
+
+1554871631 source:c:\c++\sistemasinteligentes\genetic\bfs.cpp
+	"bfs.h"
+	<list>
+	<iostream>
+
+1554861692 c:\c++\sistemasinteligentes\genetic\bfs.h
+	"graph.h"
+	<vector>
+
+1554063633 source:c:\c++\sistemasinteligentes\genetic\estado.cpp
+	"estado.h"
+
+1554873078 source:c:\c++\sistemasinteligentes\genetic\graph.cpp
+	<vector>
+	<iostream>
+	"graph.h"
+
+1555906799 source:c:\c++\sistemasinteligentes\genetic\main.cpp
+	<iostream>
+	<vector>
+	<string>
+	"graph.h"
+	"bfs.h"
+	"astar.h"
+	"environment.h"
+	"chromossome.h"
+	<bits/stdc++.h>
+
+1555896252 c:\c++\sistemasinteligentes\genetic\environment.h
+	<iostream>
+	"agent.h"
+	"graph.h"
+
+1555899186 c:\c++\sistemasinteligentes\genetic\genetic.h
+	<math.h>
+	<stdio.h>
+
+1555896369 source:c:\c++\sistemasinteligentes\genetic\environment.cpp
+	"environment.h"
+
+1555906976 source:c:\c++\sistemasinteligentes\genetic\chromossome.cpp
+	"chromossome.h"
+
+1555905474 c:\c++\sistemasinteligentes\genetic\chromossome.h
+	<math.h>
+	<iostream>
+

@@ -158,7 +158,18 @@ int r,c;
        {
         printf( "|   " );
        }
-
+      if (Matrix[r][c] == PONTOINTERMEDIARIO)
+       {
+        printf("| a ");
+       }
+      if (Matrix[r][c] == PONTOINTERMEDIARIO2)
+       {
+        printf("| b ");
+       }
+      if (Matrix[r][c] == PONTOINTERMEDIARIO3)
+       {
+        printf("| c ");
+       }
       if ( Matrix[r][c] == ROBOT )
        {
         if (Rob1.getFacing() == NORTH)
@@ -189,7 +200,7 @@ int r,c;
         {
           printf("| < ");
         }
-	else if (Rob1.getFacing() == NORTHWEST)
+        else if (Rob1.getFacing() == NORTHWEST)
         {
           printf("| # ");
         }//end of if(Rob1...)else
@@ -300,6 +311,27 @@ int local_facing;
      if(Rob1.getFacing()==WEST) Rob1.setFacing(SOUTH);
    }
 */}
+
+
+
+
+void Environment::AddPontoIntermediarioToStateMatrix(int x, int y, int npontointermediario)
+{
+    switch (npontointermediario)
+    {
+        case 1:
+            Matrix[x][y] = PONTOINTERMEDIARIO;
+            break;
+        case 2:
+            Matrix[x][y] = PONTOINTERMEDIARIO2;
+            break;
+        case 3:
+            Matrix[x][y] = PONTOINTERMEDIARIO3;
+            break;
+    }
+}
+
+//Código abaixo se refere à primeira tarefa
 
 void Environment::addForwardWalkToGraph(int ux, int uy, int udirection)
 {

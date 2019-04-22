@@ -7,6 +7,7 @@
 #define WALL        27
 #define TARGET	    28
 #define NONE        -1
+#define PONTOINTERMED 29
 
 #define MAX_ROWS    20
 #define MAX_COLS    20
