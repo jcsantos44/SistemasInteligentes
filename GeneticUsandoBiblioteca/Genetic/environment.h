@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
+#include <vector>
 #include "agent.h"
-#include "graph.h"
 
 #define ROBOT       26
 #define WALL        27
@@ -21,7 +21,7 @@ class Environment {
     int n_rows, n_cols;
     typedef std::vector<std::vector<int> > mat;
     mat Matrix;
-    Graph* graph;
+//    Graph* graph;
     int x_target, y_target;
     //int Matrix[MAX_ROWS][MAX_COLS];
  public:
@@ -34,6 +34,7 @@ class Environment {
     void rotate_robot(int clock_or_counterclock_90_degrees);
 
     void AddPontoIntermediarioToStateMatrix(int x, int y, int npontointermediario);
+    bool CheckForObstacleBetweenTwoPoints(int ax, int ay, int bx, int by);
 
     //Primeira tarefa:
     void addForwardWalkToGraph(int ux, int uy, int udirection);
@@ -41,11 +42,10 @@ class Environment {
     void addRotationAnticlockwiseToGraph(int ux, int uy, int udirection);
     void traverseMatrixMakeStateGraph();
     std::vector<std::vector<int> > getMatrix();
-    Graph* getGraph();
     int getN_Cols();
     int getN_Rows();
     int getX_Target();
     int getY_Target();
     Robot getAgent();
-    void traverseShortestPath(std::vector<Estado> ShortestPath);
+//    void traverseShortestPath(std::vector<Estado> ShortestPath);
 };

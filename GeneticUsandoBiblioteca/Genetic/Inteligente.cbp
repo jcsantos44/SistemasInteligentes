@@ -34,18 +34,8 @@
 		</Compiler>
 		<Unit filename="agent.cpp" />
 		<Unit filename="agent.h" />
-		<Unit filename="astar.cpp" />
-		<Unit filename="astar.h" />
-		<Unit filename="bfs.cpp" />
-		<Unit filename="bfs.h" />
-		<Unit filename="chromossome.cpp" />
-		<Unit filename="chromossome.h" />
 		<Unit filename="environment.cpp" />
 		<Unit filename="environment.h" />
-		<Unit filename="estado.cpp" />
-		<Unit filename="estado.h" />
-		<Unit filename="graph.cpp" />
-		<Unit filename="graph.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

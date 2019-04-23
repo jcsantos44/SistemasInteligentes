@@ -1,11 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "graph.h"
-#include "bfs.h"
-#include "astar.h"
 #include "environment.h"
-#include "chromossome.h"
 #include <bits/stdc++.h>
 #include <fstream>
 #include "openga.hpp"
@@ -77,7 +73,7 @@ bool eval_solution(
 	const int& x3=p.x3;
 	const int& y3=p.y3;
 
-	c.objective1=sqrt((x1-SourceX)*(x1-SourceX)+(y1-SourceY)*(y1-SourceY));
+	c.objective1=sqrt((x1-SourceX)*(x1-SourceX)+(y1-SourceY)*(y1-SourceY));     //Alterar fitness function para incluir custo de rotação e penalidade de obstaculos
 	c.objective2=sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
 	c.objective3=sqrt((x3-x2)*(x3-x2)+(y3-y2)*(y3-y2));
 	c.objective4=sqrt((DestinationX-x3)*(DestinationX-x3)+(DestinationY-y3)*(DestinationY-y3));
@@ -92,18 +88,22 @@ Path mutate(
 	Path X_new;
 	bool in_range;
 	do{
+        /**
+           Gerar ponto qualquer na horizontal de outro ponto:
+                NewX = OldX
+        */
 		in_range=true;
 		X_new=X_base;
-		X_new.x1+=0.2*(rnd01()-rnd01())*shrink_scale;
+		X_new.x1+=0.2*(rnd01()-rnd01())*shrink_scale;       //Primeiro ponto deve estar na vertical/horizontal/diagonal do ponto inicial
 		in_range=in_range&&(X_new.x1>=0.0 && X_new.x1<10.0);
 		X_new.y1+=0.2*(rnd01()-rnd01())*shrink_scale;
 		in_range=in_range&&(X_new.y1>=0.0 && X_new.y1<10.0);
 		X_new.x2+=0.2*(rnd01()-rnd01())*shrink_scale;
-		in_range=in_range&&(X_new.x2>=0.0 && X_new.x2<10.0);
+		in_range=in_range&&(X_new.x2>=0.0 && X_new.x2<10.0); //Segundo ponto deve estar na vertical/horizontal/diagonal do primeiro ponto intermediario
 		X_new.y2+=0.2*(rnd01()-rnd01())*shrink_scale;
 		in_range=in_range&&(X_new.y2>=0.0 && X_new.y2<10.0);
 		X_new.x3+=0.2*(rnd01()-rnd01())*shrink_scale;
-		in_range=in_range&&(X_new.x3>=0.0 && X_new.x3<10.0);
+		in_range=in_range&&(X_new.x3>=0.0 && X_new.x3<10.0); //Terceiro ponto deve estar na vertical/horizontal/diagonal do segundo ponto intermediario
 		X_new.y3+=0.2*(rnd01()-rnd01())*shrink_scale;
 		in_range=in_range&&(X_new.y3>=0.0 && X_new.y3<10.0);
 	} while(!in_range);
@@ -180,13 +180,13 @@ int main()
 
     Environment Env1;
     Env1.scan_state_from_file();
-    Estado* source = new Estado(Env1.getAgent().getX(),Env1.getAgent().getY(),Env1.getAgent().getFacing());
-    Estado* destination = new Estado(Env1.getX_Target(),Env1.getY_Target(),2);
+//    Estado* source = new Estado(Env1.getAgent().getX(),Env1.getAgent().getY(),Env1.getAgent().getFacing());
+//    Estado* destination = new Estado(Env1.getX_Target(),Env1.getY_Target(),2);
 
-    SourceX = source->getX();
-    SourceY = source->getY();
-    DestinationX = destination->getX();
-    DestinationY = destination->getY();
+    SourceX = Env1.getAgent().getX();
+    SourceY = Env1.getAgent().getY();
+    DestinationX = Env1.getX_Target();
+    DestinationY = Env1.getY_Target();
 	output_file.open("results.txt");
 	output_file<<"step"<<"\t"<<"cost_avg"<<"\t"<<"cost_best"<<"\t"<<"solution_best"<<"\n";
 

@@ -15,7 +15,7 @@ Environment::Environment()
     fscanf(arq, "%d\n", &n_cols);
     mat temp(MAX_ROWS, std::vector<int>(MAX_COLS));
     Matrix = temp;
-    graph = new Graph(n_rows, n_cols, NUMBERDIRECTIONS);
+//    graph = new Graph(n_rows, n_cols, NUMBERDIRECTIONS);
 }
 
 void Environment::scan_state_from_file()
@@ -319,26 +319,67 @@ int local_facing;
 */}
 
 
-
+/*bool CheckForObstacleBetweenTwoPoints(int ax, int ay, int bx, int by)
+{
+    if (ax == bx && ay == by)  //verificação na diagonal
+    {
+        for (int i = ax; i < bx; i++)
+        {
+            if(M[i][ay])
+        }
+    }
+}*/
 
 void Environment::AddPontoIntermediarioToStateMatrix(int x, int y, int npontointermediario)
 {
-    switch (npontointermediario)
-    {
-        case 1:
-            Matrix[x][y] = PONTOINTERMEDIARIO;
-            break;
-        case 2:
-            Matrix[x][y] = PONTOINTERMEDIARIO2;
-            break;
-        case 3:
-            Matrix[x][y] = PONTOINTERMEDIARIO3;
-            break;
+    if (Matrix[x][y] != ROBOT && Matrix[x][y] != TARGET){
+        switch (npontointermediario)
+        {
+            case 1:
+                Matrix[x][y] = PONTOINTERMEDIARIO;
+                break;
+            case 2:
+                Matrix[x][y] = PONTOINTERMEDIARIO2;
+                break;
+            case 3:
+                Matrix[x][y] = PONTOINTERMEDIARIO3;
+                break;
+        }
     }
 }
 
-//Código abaixo se refere à primeira tarefa
+std::vector<std::vector<int> > Environment::getMatrix()
+{
+    return Matrix;
+}
 
+int Environment::getN_Rows()
+{
+    return n_rows;
+}
+
+int Environment::getN_Cols()
+{
+    return n_rows;
+}
+
+int Environment::getX_Target()
+{
+    return x_target;
+}
+
+int Environment::getY_Target()
+{
+    return y_target;
+}
+
+Robot Environment::getAgent()
+{
+    return Rob1;
+}
+
+//Código abaixo se refere à primeira tarefa
+/*
 void Environment::addForwardWalkToGraph(int ux, int uy, int udirection)
 {
     switch(udirection)
@@ -433,40 +474,7 @@ void Environment::traverseMatrixMakeStateGraph()
     }
 }
 
-std::vector<std::vector<int> > Environment::getMatrix()
-{
-    return Matrix;
-}
 
-Graph* Environment::getGraph()
-{
-    return graph;
-}
-
-int Environment::getN_Rows()
-{
-    return n_rows;
-}
-
-int Environment::getN_Cols()
-{
-    return n_rows;
-}
-
-int Environment::getX_Target()
-{
-    return x_target;
-}
-
-int Environment::getY_Target()
-{
-    return y_target;
-}
-
-Robot Environment::getAgent()
-{
-    return Rob1;
-}
 
 void Environment::traverseShortestPath(std::vector<Estado> ShortestPath)
 {
@@ -513,4 +521,5 @@ void Environment::traverseShortestPath(std::vector<Estado> ShortestPath)
         print_state();
     }
     std::cout << "Numero de passos: " << ShortestPath.size();
-}
+
+}*/

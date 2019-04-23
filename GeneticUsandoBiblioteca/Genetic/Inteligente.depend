@@ -275,3 +275,54 @@
 	<algorithm>
 	<functional>
 
+1554171606 source:c:\c++\sistemasinteligentes\geneticusandobiblioteca\genetic\agent.cpp
+	"agent.h"
+
+1554174335 c:\c++\sistemasinteligentes\geneticusandobiblioteca\genetic\agent.h
+	<iostream>
+
+1554063633 source:c:\c++\sistemasinteligentes\geneticusandobiblioteca\genetic\estado.cpp
+	"estado.h"
+
+1554859992 c:\c++\sistemasinteligentes\geneticusandobiblioteca\genetic\estado.h
+
+1556063396 source:c:\c++\sistemasinteligentes\geneticusandobiblioteca\genetic\main.cpp
+	<iostream>
+	<vector>
+	<string>
+	"environment.h"
+	"chromossome.h"
+	<bits/stdc++.h>
+	<fstream>
+	"openga.hpp"
+
+1556063776 c:\c++\sistemasinteligentes\geneticusandobiblioteca\genetic\environment.h
+	<iostream>
+	<vector>
+	"agent.h"
+
+1554868522 c:\c++\sistemasinteligentes\geneticusandobiblioteca\genetic\graph.h
+	<vector>
+	"estado.h"
+
+1555957111 c:\c++\sistemasinteligentes\geneticusandobiblioteca\genetic\chromossome.h
+	<math.h>
+	<iostream>
+
+1555987969 c:\c++\sistemasinteligentes\geneticusandobiblioteca\genetic\openga.hpp
+	<vector>
+	<random>
+	<chrono>
+	<thread>
+	<ctime>
+	<string>
+	<iostream>
+	<stdexcept>
+	<assert.h>
+	<limits>
+	<algorithm>
+	<functional>
+
+1556063775 source:c:\c++\sistemasinteligentes\geneticusandobiblioteca\genetic\environment.cpp
+	"environment.h"
+
