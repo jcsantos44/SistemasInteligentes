@@ -1,0 +1,277 @@
+# depslib dependency file v1.0
+1554873543 source:c:\c++\inteligente\main.cpp
+	<iostream>
+	<vector>
+	<string>
+	"graph.h"
+	"bfs.h"
+	"astar.h"
+	"environment.h"
+
+1554868522 c:\c++\inteligente\graph.h
+	<vector>
+	"estado.h"
+
+1554859992 c:\c++\inteligente\estado.h
+
+1554063633 source:c:\c++\inteligente\estado.cpp
+	"estado.h"
+
+1554873078 source:c:\c++\inteligente\graph.cpp
+	<vector>
+	<iostream>
+	"graph.h"
+
+1554871631 source:c:\c++\inteligente\bfs.cpp
+	"bfs.h"
+	<list>
+	<iostream>
+
+1554861692 c:\c++\inteligente\bfs.h
+	"graph.h"
+	<vector>
+
+1554873453 source:c:\c++\inteligente\astar.cpp
+	"astar.h"
+	<queue>
+	<unordered_map>
+	<iostream>
+	<map>
+	<algorithm>
+
+1554870832 c:\c++\inteligente\astar.h
+	"graph.h"
+
+1554870959 source:c:\c++\inteligente\environment.cpp
+	"environment.h"
+
+1554171606 source:c:\c++\inteligente\agent.cpp
+	"agent.h"
+
+1554174335 c:\c++\inteligente\agent.h
+	<iostream>
+
+1554179476 c:\c++\inteligente\environment.h
+	<iostream>
+	"agent.h"
+	"graph.h"
+
+1554302770 c:\c++\inteligente\operators.h
+	"Estado.h"
+
+1554302749 source:c:\c++\inteligente\operators.cpp
+	"operators.h"
+
+1554171606 source:c:\c++\genetic\agent.cpp
+	"agent.h"
+
+1554174335 c:\c++\genetic\agent.h
+	<iostream>
+
+1554873453 source:c:\c++\genetic\astar.cpp
+	"astar.h"
+	<queue>
+	<unordered_map>
+	<iostream>
+	<map>
+	<algorithm>
+
+1554870832 c:\c++\genetic\astar.h
+	"graph.h"
+
+1554868522 c:\c++\genetic\graph.h
+	<vector>
+	"estado.h"
+
+1554859992 c:\c++\genetic\estado.h
+
+1554871631 source:c:\c++\genetic\bfs.cpp
+	"bfs.h"
+	<list>
+	<iostream>
+
+1554861692 c:\c++\genetic\bfs.h
+	"graph.h"
+	<vector>
+
+1554870959 source:c:\c++\genetic\environment.cpp
+	"environment.h"
+
+1554179476 c:\c++\genetic\environment.h
+	<iostream>
+	"agent.h"
+	"graph.h"
+
+1554063633 source:c:\c++\genetic\estado.cpp
+	"estado.h"
+
+1554873078 source:c:\c++\genetic\graph.cpp
+	<vector>
+	<iostream>
+	"graph.h"
+
+1555893847 source:c:\c++\genetic\main.cpp
+	<iostream>
+	<vector>
+	<string>
+	"graph.h"
+	"bfs.h"
+	"astar.h"
+	"environment.h"
+	"genetic.h"
+
+1555893899 c:\c++\genetic\genetic.h
+	<math.h>
+
+1554171606 source:c:\c++\sistemasinteligentes\genetic\agent.cpp
+	"agent.h"
+
+1554174335 c:\c++\sistemasinteligentes\genetic\agent.h
+	<iostream>
+
+1554873453 source:c:\c++\sistemasinteligentes\genetic\astar.cpp
+	"astar.h"
+	<queue>
+	<unordered_map>
+	<iostream>
+	<map>
+	<algorithm>
+
+1554870832 c:\c++\sistemasinteligentes\genetic\astar.h
+	"graph.h"
+
+1554868522 c:\c++\sistemasinteligentes\genetic\graph.h
+	<vector>
+	"estado.h"
+
+1554859992 c:\c++\sistemasinteligentes\genetic\estado.h
+
+1554871631 source:c:\c++\sistemasinteligentes\genetic\bfs.cpp
+	"bfs.h"
+	<list>
+	<iostream>
+
+1554861692 c:\c++\sistemasinteligentes\genetic\bfs.h
+	"graph.h"
+	<vector>
+
+1554063633 source:c:\c++\sistemasinteligentes\genetic\estado.cpp
+	"estado.h"
+
+1554873078 source:c:\c++\sistemasinteligentes\genetic\graph.cpp
+	<vector>
+	<iostream>
+	"graph.h"
+
+1555906799 source:c:\c++\sistemasinteligentes\genetic\main.cpp
+	<iostream>
+	<vector>
+	<string>
+	"graph.h"
+	"bfs.h"
+	"astar.h"
+	"environment.h"
+	"chromossome.h"
+	<bits/stdc++.h>
+
+1555896252 c:\c++\sistemasinteligentes\genetic\environment.h
+	<iostream>
+	"agent.h"
+	"graph.h"
+
+1555899186 c:\c++\sistemasinteligentes\genetic\genetic.h
+	<math.h>
+	<stdio.h>
+
+1555896369 source:c:\c++\sistemasinteligentes\genetic\environment.cpp
+	"environment.h"
+
+1555906976 source:c:\c++\sistemasinteligentes\genetic\chromossome.cpp
+	"chromossome.h"
+
+1555905474 c:\c++\sistemasinteligentes\genetic\chromossome.h
+	<math.h>
+	<iostream>
+
+1554171606 source:c:\c++\comlib\genetic\agent.cpp
+	"agent.h"
+
+1554174335 c:\c++\comlib\genetic\agent.h
+	<iostream>
+
+1554873453 source:c:\c++\comlib\genetic\astar.cpp
+	"astar.h"
+	<queue>
+	<unordered_map>
+	<iostream>
+	<map>
+	<algorithm>
+
+1554870832 c:\c++\comlib\genetic\astar.h
+	"graph.h"
+
+1554868522 c:\c++\comlib\genetic\graph.h
+	<vector>
+	"estado.h"
+
+1554859992 c:\c++\comlib\genetic\estado.h
+
+1554871631 source:c:\c++\comlib\genetic\bfs.cpp
+	"bfs.h"
+	<list>
+	<iostream>
+
+1554861692 c:\c++\comlib\genetic\bfs.h
+	"graph.h"
+	<vector>
+
+1555957111 source:c:\c++\comlib\genetic\chromossome.cpp
+	"chromossome.h"
+
+1555957111 c:\c++\comlib\genetic\chromossome.h
+	<math.h>
+	<iostream>
+
+1555990952 source:c:\c++\comlib\genetic\environment.cpp
+	"environment.h"
+
+1555896252 c:\c++\comlib\genetic\environment.h
+	<iostream>
+	"agent.h"
+	"graph.h"
+
+1554063633 source:c:\c++\comlib\genetic\estado.cpp
+	"estado.h"
+
+1554873078 source:c:\c++\comlib\genetic\graph.cpp
+	<vector>
+	<iostream>
+	"graph.h"
+
+1555990644 source:c:\c++\comlib\genetic\main.cpp
+	<iostream>
+	<vector>
+	<string>
+	"graph.h"
+	"bfs.h"
+	"astar.h"
+	"environment.h"
+	"chromossome.h"
+	<bits/stdc++.h>
+	<fstream>
+	"openga.hpp"
+
+1555987969 c:\c++\comlib\genetic\openga.hpp
+	<vector>
+	<random>
+	<chrono>
+	<thread>
+	<ctime>
+	<string>
+	<iostream>
+	<stdexcept>
+	<assert.h>
+	<limits>
+	<algorithm>
+	<functional>
+
