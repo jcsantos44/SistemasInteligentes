@@ -286,17 +286,16 @@
 
 1554859992 c:\c++\sistemasinteligentes\geneticusandobiblioteca\genetic\estado.h
 
-1556063396 source:c:\c++\sistemasinteligentes\geneticusandobiblioteca\genetic\main.cpp
+1556067511 source:c:\c++\sistemasinteligentes\geneticusandobiblioteca\genetic\main.cpp
 	<iostream>
 	<vector>
 	<string>
 	"environment.h"
-	"chromossome.h"
 	<bits/stdc++.h>
 	<fstream>
 	"openga.hpp"
 
-1556063776 c:\c++\sistemasinteligentes\geneticusandobiblioteca\genetic\environment.h
+1556066896 c:\c++\sistemasinteligentes\geneticusandobiblioteca\genetic\environment.h
 	<iostream>
 	<vector>
 	"agent.h"
@@ -323,6 +322,6 @@
 	<algorithm>
 	<functional>
 
-1556063775 source:c:\c++\sistemasinteligentes\geneticusandobiblioteca\genetic\environment.cpp
+1556067541 source:c:\c++\sistemasinteligentes\geneticusandobiblioteca\genetic\environment.cpp
 	"environment.h"
 

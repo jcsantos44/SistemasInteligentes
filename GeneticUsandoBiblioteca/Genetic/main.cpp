@@ -222,6 +222,11 @@ int main()
 	cout<<"The problem is optimized in "<<timer.toc()<<" seconds."<<endl;
 
 	output_file.close();
+
+    cout << endl;
+	cout << Env1.CheckForObstacleBetweenTwoPoints(2,2,2,19) << endl;
+	cout << Env1.CheckForObstacleBetweenTwoPoints(4,4,8,0) << endl;
+
 	return 0;
 }
 

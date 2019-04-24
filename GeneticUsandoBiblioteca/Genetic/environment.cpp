@@ -319,16 +319,92 @@ int local_facing;
 */}
 
 
-/*bool CheckForObstacleBetweenTwoPoints(int ax, int ay, int bx, int by)
+int Environment::CheckForObstacleBetweenTwoPoints(int ax, int ay, int bx, int by)
 {
-    if (ax == bx && ay == by)  //verificação na diagonal
+    int NumberOfTimesCrossedObstacle = 0;
+    if (ax == bx && ay == by)  //verificação mesma celula
     {
-        for (int i = ax; i < bx; i++)
+        return NumberOfTimesCrossedObstacle;
+    } else if (ax != bx && ay != by)  //verificação na diagonal
+    {
+        if (ax < bx  && ay < by) /**SE*/
         {
-            if(M[i][ay])
+            for (int i = 1; i < (bx - ax); i++)
+            {
+                if (Matrix[ax+i][ay+i] == WALL)
+                {
+                    NumberOfTimesCrossedObstacle++;
+                }
+            }
+        } else if (ax > bx  && ay > by) /**NW*/
+        {
+            for (int i = 1; i < (ax - bx); i++)
+            {
+                if (Matrix[ax-i][ay-i] == WALL)
+                {
+                    NumberOfTimesCrossedObstacle++;
+                }
+            }
+        } else if (ax > bx  && ay < by) /**NE*/
+        {
+            for (int i = 1; i < (ax - bx); i++)
+            {
+                if (Matrix[ax-i][ay+i] == WALL)
+                {
+                    NumberOfTimesCrossedObstacle++;
+                }
+            }
+        } else if (ax < bx  && ay > by) /**SW*/
+        {
+            for (int i = 1; i < (bx - ax); i++)
+            {
+                if (Matrix[ax+i][ay-i] == WALL)
+                {
+                    NumberOfTimesCrossedObstacle++;
+                }
+            }
+        }
+    }else if (ax == bx and ay != by) //verificação na horizontal
+    {
+        if (ay < by) // deslocamento direita
+        {
+            for (int i = ay+1; i < by; i++)
+            {
+                //std::cout << Matrix[ax][i];
+                if (Matrix[ax][i] == WALL)
+                {
+                    NumberOfTimesCrossedObstacle++;
+                }
+
+            }
+        } else if (ay > by) // deslocamento esquerda
+        {
+            for (int i = by+1; i < ay; i++)
+            {
+                if (Matrix[ax][i] == WALL)
+                    NumberOfTimesCrossedObstacle++;
+            }
+        }
+    } else if (ax != bx and ay == by) // verificação na vertical
+    {
+        if (ax < bx) // deslocamento cima
+        {
+            for (int i = ax+1; i < by; i++)
+            {
+                if (Matrix[i][ay] == WALL)
+                    NumberOfTimesCrossedObstacle++;
+            }
+        } else if (ax > bx) // deslocamento baixo
+        {
+            for (int i = by+1; i < ay; i++)
+            {
+                if (Matrix[i][ay] == WALL)
+                    NumberOfTimesCrossedObstacle++;
+            }
         }
     }
-}*/
+    return NumberOfTimesCrossedObstacle;
+}
 
 void Environment::AddPontoIntermediarioToStateMatrix(int x, int y, int npontointermediario)
 {

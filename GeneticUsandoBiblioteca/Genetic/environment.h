@@ -34,7 +34,7 @@ class Environment {
     void rotate_robot(int clock_or_counterclock_90_degrees);
 
     void AddPontoIntermediarioToStateMatrix(int x, int y, int npontointermediario);
-    bool CheckForObstacleBetweenTwoPoints(int ax, int ay, int bx, int by);
+    int CheckForObstacleBetweenTwoPoints(int ax, int ay, int bx, int by);
 
     //Primeira tarefa:
     void addForwardWalkToGraph(int ux, int uy, int udirection);
