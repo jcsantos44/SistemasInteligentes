@@ -51,16 +51,142 @@ struct IntermediateCost
 typedef EA::Genetic<Path,IntermediateCost> GA_Type;
 typedef EA::GenerationType<Path,IntermediateCost> Generation_Type;
 
+
 void init_genes(Path& p,const std::function<double(void)> &rnd01)
 {
 	// rnd01() gives a random number in 0~1
-	p.x1=0.0+10*rnd01();
-	p.y1=0.0+10*rnd01();
-	p.x2=0.0+10*rnd01();
-	p.y2=0.0+10*rnd01();
-	p.x3=0.0+10*rnd01();
-	p.y3=0.0+10*rnd01();
+
+	int i = 0.0+7*rnd01();
+
+	if (i < 2)
+    {
+        p.x1=SourceX;
+        p.y1=0.0+10*rnd01();
+    } else
+    if (i >= 2 && i < 4)
+    {
+        p.x1=0.0+10*rnd01();
+        p.y1=SourceY;
+    } else if (i == 4) /**SE*/
+    {
+        int j = 0.0+10*rnd01() -  SourceX;
+        p.x1=SourceX+j;
+        p.y1=SourceY+j;
+    }
+    else if (i == 5)  /**NE*/
+    {
+        int r = 0.0+SourceX*rnd01();
+        p.x1=SourceX-r;
+        p.y1=SourceY+r;
+    }
+    else if (i == 6)  /**NW*/
+    {
+        int r = 0.0+SourceX*rnd01();
+        p.x1=SourceX-r;
+        p.y1=SourceY-r;
+    }
+    else if (i == 7)  /**SW*/
+    {
+        int r = 0.0+SourceY*rnd01();
+        p.x1=SourceX+r;
+        p.y1=SourceY-r;
+    }
+    else
+    {
+        p.x1=0.0+10*rnd01();
+        p.y1=0.0+10*rnd01();
+    }
+
+   i = 0.0+7*rnd01();
+
+	if (i < 2)
+    {
+        p.x2=p.x1;
+        p.y2=0.0+10*rnd01();
+    } else
+    if (i >= 2 && i < 4)
+    {
+        p.x2=0.0+10*rnd01();
+        p.y2=p.y1;
+    } else if (i == 4) /**SE*/
+    {
+        int j = 0.0+10*rnd01() -  p.x1;
+        p.x2=p.x1+j;
+        p.y2=p.y1+j;
+    }
+    else if (i == 5)  /**NE*/
+    {
+        int r = 0.0+p.x1*rnd01();
+        p.x2=p.x1-r;
+        p.y2=p.y1+r;
+    }
+    else if (i == 6)  /**NW*/
+    {
+        int r = 0.0+p.x1*rnd01();
+        p.x2=p.x1-r;
+        p.y2=p.y1-r;
+    }
+    else if (i == 7)  /**SW*/
+    {
+        int r = 0.0+p.y1*rnd01();
+        p.x2=p.x1+r;
+        p.y2=p.y1-r;
+    }
+    else
+    {
+        p.x2=0.0+10*rnd01();
+        p.y2=0.0+10*rnd01();
+    }
+
+    i = 0.0+7*rnd01();
+
+	if (i < 2)
+    {
+        p.x3=p.x2;
+        p.y3=0.0+10*rnd01();
+    } else
+    if (i >= 2 && i < 4)
+    {
+        p.x3=0.0+10*rnd01();
+        p.y3=p.y2;
+    } else if (i == 4) /**SE*/
+    {
+        int j = 0.0+10*rnd01() -  p.x2;
+        p.x3=p.x2+j;
+        p.y3=p.y2+j;
+    }
+    else if (i == 5)  /**NE*/
+    {
+        int r = 0.0+p.x2*rnd01();
+        p.x3=p.x2-r;
+        p.y3=p.y2+r;
+    }
+    else if (i == 6)  /**NW*/
+    {
+        int r = 0.0+p.x2*rnd01();
+        p.x3=p.x2-r;
+        p.y3=p.y2-r;
+    }
+    else if (i == 7)  /**SW*/
+    {
+        int r = 0.0+p.y2*rnd01();
+        p.x3=p.x2+r;
+        p.y3=p.y2-r;
+    }
+    else
+    {
+        p.x3=0.0+10*rnd01();
+        p.y3=0.0+10*rnd01();
+    }
+
+	//p.x2=10+15*rnd01();
+	//cout << p.x2 << endl;
+    //p.y2=0.0+10*rnd01();
+	//p.x3=0.0+10*rnd01();
+	//p.y3=0.0+10*rnd01();        //gerar esses genes do jeito certo
 }
+
+//int getRotationCost (int )
 
 bool eval_solution(
 	const Path& p,
@@ -95,13 +221,16 @@ Path mutate(
 		in_range=true;
 		X_new=X_base;
 		X_new.x1+=0.2*(rnd01()-rnd01())*shrink_scale;       //Primeiro ponto deve estar na vertical/horizontal/diagonal do ponto inicial
+
 		in_range=in_range&&(X_new.x1>=0.0 && X_new.x1<10.0);
 		X_new.y1+=0.2*(rnd01()-rnd01())*shrink_scale;
 		in_range=in_range&&(X_new.y1>=0.0 && X_new.y1<10.0);
+
 		X_new.x2+=0.2*(rnd01()-rnd01())*shrink_scale;
 		in_range=in_range&&(X_new.x2>=0.0 && X_new.x2<10.0); //Segundo ponto deve estar na vertical/horizontal/diagonal do primeiro ponto intermediario
 		X_new.y2+=0.2*(rnd01()-rnd01())*shrink_scale;
 		in_range=in_range&&(X_new.y2>=0.0 && X_new.y2<10.0);
+
 		X_new.x3+=0.2*(rnd01()-rnd01())*shrink_scale;
 		in_range=in_range&&(X_new.x3>=0.0 && X_new.x3<10.0); //Terceiro ponto deve estar na vertical/horizontal/diagonal do segundo ponto intermediario
 		X_new.y3+=0.2*(rnd01()-rnd01())*shrink_scale;
