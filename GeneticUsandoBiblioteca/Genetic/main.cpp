@@ -9,7 +9,7 @@
 
 
 
-#define NUMBEROFITERATIONS 100
+//#define NUMBEROFITERATIONS 100
 
 using namespace std;
 
@@ -20,9 +20,9 @@ typedef std::vector<std::vector<int> > mat;
 
 Environment Env;
 
-void bresenham(float x1, float y1, float x2, float y2)
+int bresenham(float x1, float y1, float x2, float y2)
 {
-
+    int Obstacles = 0;
     float difX = x2 - x1;
     float difY = y2 - y1;
     float dist = abs(difX) + abs(difY);
@@ -34,8 +34,16 @@ void bresenham(float x1, float y1, float x2, float y2)
     for (int i = 0; i <= ceil(dist); i++) {
         x = floor(x1 + dx * i);
         y = floor(y1 + dy * i);
-        Env.AddPontoIntermediarioToStateMatrix(x,y,2);
+        if (x >= 0 && x < 20 && y >= 0 && y < 20)
+        {
+            if (Matrix[x][y] == WALL)
+            {
+                Obstacles++;
+                //cout << Obstacles << endl;
+            }
+        }
     }
+    return Obstacles;
 }
 
 struct Path
@@ -101,13 +109,13 @@ bool eval_solution(
 	const int& y3=p.y3;
 
 
-    double penalidade = 0; //CheckForObstacleBetweenTwoPoints(SourceX,SourceY,x1,y1)*50;
+    double penalidade = bresenham(SourceX,SourceY,x1,y1)*50;
 	c.objective1=sqrt((x1-SourceX)*(x1-SourceX)+(y1-SourceY)*(y1-SourceY)) + penalidade;     //Alterar fitness function para incluir custo de rotação e penalidade de obstaculos
-	penalidade = 0; //CheckForObstacleBetweenTwoPoints(x1,y1,x2,y2)*50;
+	penalidade = bresenham(x1,y1,x2,y2)*50;
 	c.objective2=sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1)) + penalidade;
-	penalidade = 0; //CheckForObstacleBetweenTwoPoints(x2,y2,x3,y3)*50;
+	penalidade = bresenham(x2,y2,x3,y3)*50;
 	c.objective3=sqrt((x3-x2)*(x3-x2)+(y3-y2)*(y3-y2)) + penalidade;
-	penalidade = 0; //CheckForObstacleBetweenTwoPoints(x3,y3,DestinationX,DestinationY)*50;
+	penalidade = bresenham(x3,y3,DestinationX,DestinationY)*50;
 	c.objective4=sqrt((DestinationX-x3)*(DestinationX-x3)+(DestinationY-y3)*(DestinationY-y3)) + penalidade;
 	return true; // solution is accepted
 }
@@ -252,14 +260,14 @@ int main()
 	ga_obj.elite_count=10;
 	ga_obj.crossover_fraction=0.7;
 	ga_obj.mutation_rate=0.2;
-	ga_obj.best_stall_max=10;
+	ga_obj.best_stall_max=100;
 	ga_obj.elite_count=10;
 	ga_obj.solve();
 	cout << endl << SolutionX1 << "," << SolutionY1 << endl;
 
-    //Env1.AddPontoIntermediarioToStateMatrix(SolutionX1, SolutionY1, 1);
-    //Env1.AddPontoIntermediarioToStateMatrix(SolutionX2, SolutionY2, 2);
-    //Env1.AddPontoIntermediarioToStateMatrix(SolutionX3, SolutionY3, 3);
+    Env.AddPontoIntermediarioToStateMatrix(SolutionX1, SolutionY1, 1);
+    Env.AddPontoIntermediarioToStateMatrix(SolutionX2, SolutionY2, 2);
+    Env.AddPontoIntermediarioToStateMatrix(SolutionX3, SolutionY3, 3);
     bresenham(2,1,19,16);
     Env.print_state();
 
