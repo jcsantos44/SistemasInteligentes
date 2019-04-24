@@ -37,6 +37,7 @@
 		<Unit filename="environment.cpp" />
 		<Unit filename="environment.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="openga.hpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

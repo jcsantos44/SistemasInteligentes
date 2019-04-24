@@ -434,13 +434,16 @@ public:
 
 	StopReason solve_next_generation()
 	{
+
 		Chronometer timer;
 		timer.tic();
 		generation_step++;
 		thisGenerationType new_generation;
-		transfer(new_generation);
-		crossover_and_mutation(new_generation);
 
+		transfer(new_generation);
+		//std::cout << "AAAAAAAA";
+		crossover_and_mutation(new_generation);
+        //std::cout << "AAAAAAAA";
 		finalize_objectives(new_generation);
 		rank_population(new_generation);  // used for selection
 		thisGenerationType selected_generation;

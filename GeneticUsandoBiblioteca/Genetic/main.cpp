@@ -15,6 +15,28 @@ using namespace std;
 
 int SourceX, SourceY, DestinationX, DestinationY;
 int gridCols, gridRows;
+typedef std::vector<std::vector<int> > mat;
+    mat Matrix;
+
+Environment Env;
+
+void bresenham(float x1, float y1, float x2, float y2)
+{
+
+    float difX = x2 - x1;
+    float difY = y2 - y1;
+    float dist = abs(difX) + abs(difY);
+
+    float dx = difX / dist;
+    float dy = difY / dist;
+    int x;
+    int y;
+    for (int i = 0; i <= ceil(dist); i++) {
+        x = floor(x1 + dx * i);
+        y = floor(y1 + dy * i);
+        Env.AddPontoIntermediarioToStateMatrix(x,y,2);
+    }
+}
 
 struct Path
 {
@@ -57,171 +79,12 @@ void init_genes(Path& p,const std::function<double(void)> &rnd01)
 {
 	/// rnd01() gives a random number in 0~1
 
-	int i = 0.0+7*rnd01();
-	int diagonal = gridCols < gridRows ? gridCols : gridRows;
-
-	if (i < 2)
-    {
-        p.x1 = SourceX;
-        p.y1 = 0.0+10*rnd01();
-    } else
-    if (i >= 2 && i < 4)
-    {
-        p.x1=0.0+10*rnd01();
-        p.y1 = SourceY;
-    } else if (i == 4) /**SE*/
-    {
-        int difY = gridCols - SourceY;
-        int difX = gridRows - SourceX;
-        int menor = difY < difX ? difY : difX;
-        int r = 0.0 + menor*rnd01() -  SourceX;
-
-        p.x1 = SourceX + r;
-        p.y1 = SourceY + r;
-    }
-    else if (i == 5)  /**NE*/
-    {
-        int difY = gridCols - SourceY;
-        int difX = SourceX;
-        int menor = difY < difX ? difY : difX;
-        int r = 0.0+menor*rnd01();
-
-        p.x1=SourceX-r;
-        p.y1=SourceY+r;
-    }
-    else if (i == 6)  /**NW*/
-    {
-        int menor = SourceX < SourceY ? SourceX : SourceY;
-        int r = 0.0 + menor * rnd01();
-        p.x1=SourceX-r;
-        p.y1=SourceY-r;
-    }
-    else if (i == 7)  /**SW*/
-    {
-        int difY = SourceY;
-        int difX = gridRows - SourceX;
-        int menor = difY < difX ? difY : difX;
-        int r = 0.0+menor*rnd01();
-        p.x1=SourceX+r;
-        p.y1=SourceY-r;
-    }
-    else
-    {
-        p.x1=0.0+gridRows*rnd01();
-        p.y1=0.0+gridCols*rnd01();
-    }
-
-   i = 0.0+7*rnd01();
-
-	if (i < 2)
-    {
-        p.x2 = SourceX;
-        p.y2 = 0.0+10*rnd01();
-    } else
-    if (i >= 2 && i < 4)
-    {
-        p.x2=0.0+10*rnd01();
-        p.y2 = SourceY;
-    } else if (i == 4) /**SE*/
-    {
-        int difY = gridCols - SourceY;
-        int difX = gridRows - SourceX;
-        int menor = difY < difX ? difY : difX;
-        int r = 0.0 + menor*rnd01() -  SourceX;
-
-        p.x2 = SourceX + r;
-        p.y2 = SourceY + r;
-    }
-    else if (i == 5)  /**NE*/
-    {
-        int difY = gridCols - SourceY;
-        int difX = SourceX;
-        int menor = difY < difX ? difY : difX;
-        int r = 0.0+menor*rnd01();
-
-        p.x2=SourceX-r;
-        p.y2=SourceY+r;
-    }
-    else if (i == 6)  /**NW*/
-    {
-        int menor = SourceX < SourceY ? SourceX : SourceY;
-        int r = 0.0 + menor * rnd01();
-        p.x2=SourceX-r;
-        p.y2=SourceY-r;
-    }
-    else if (i == 7)  /**SW*/
-    {
-        int difY = SourceY;
-        int difX = gridRows - SourceX;
-        int menor = difY < difX ? difY : difX;
-        int r = 0.0+menor*rnd01();
-        p.x2=SourceX+r;
-        p.y2=SourceY-r;
-    }
-    else
-    {
-        p.x2=0.0+gridRows*rnd01();
-        p.y2=0.0+gridCols*rnd01();
-    }
-
-    i = 0.0+7*rnd01();
-
-	if (i < 2)
-    {
-        p.x3 = SourceX;
-        p.y3 = 0.0+10*rnd01();
-    } else
-    if (i >= 2 && i < 4)
-    {
-        p.x3=0.0+10*rnd01();
-        p.y3 = SourceY;
-    } else if (i == 4) /**SE*/
-    {
-        int difY = gridCols - SourceY;
-        int difX = gridRows - SourceX;
-        int menor = difY < difX ? difY : difX;
-        int r = 0.0 + menor*rnd01() -  SourceX;
-
-        p.x3 = SourceX + r;
-        p.y3 = SourceY + r;
-    }
-    else if (i == 5)  /**NE*/
-    {
-        int difY = gridCols - SourceY;
-        int difX = SourceX;
-        int menor = difY < difX ? difY : difX;
-        int r = 0.0+menor*rnd01();
-
-        p.x3=SourceX-r;
-        p.y3=SourceY+r;
-    }
-    else if (i == 6)  /**NW*/
-    {
-        int menor = SourceX < SourceY ? SourceX : SourceY;
-        int r = 0.0 + menor * rnd01();
-        p.x3=SourceX-r;
-        p.y3=SourceY-r;
-    }
-    else if (i == 7)  /**SW*/
-    {
-        int difY = SourceY;
-        int difX = gridRows - SourceX;
-        int menor = difY < difX ? difY : difX;
-        int r = 0.0+menor*rnd01();
-        p.x3=SourceX+r;
-        p.y3=SourceY-r;
-    }
-    else
-    {
-        p.x3=0.0+gridRows*rnd01();
-        p.y3=0.0+gridCols*rnd01();
-    }
-
-	//p.x2=10+15*rnd01();
-	//cout << p.x2 << endl;
-    //p.y2=0.0+10*rnd01();
-	//p.x3=0.0+10*rnd01();
-	//p.y3=0.0+10*rnd01();        //gerar esses genes do jeito certo
+	p.x1=0.0+10*rnd01();
+	p.y1=0.0+10*rnd01();
+	p.x2=0.0+10*rnd01();
+    p.y2=0.0+10*rnd01();
+	p.x3=0.0+10*rnd01();
+	p.y3=0.0+10*rnd01();        //gerar esses genes do jeito certo
 }
 
 //int getRotationCost (int )
@@ -237,10 +100,15 @@ bool eval_solution(
 	const int& x3=p.x3;
 	const int& y3=p.y3;
 
-	c.objective1=sqrt((x1-SourceX)*(x1-SourceX)+(y1-SourceY)*(y1-SourceY));     //Alterar fitness function para incluir custo de rotação e penalidade de obstaculos
-	c.objective2=sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
-	c.objective3=sqrt((x3-x2)*(x3-x2)+(y3-y2)*(y3-y2));
-	c.objective4=sqrt((DestinationX-x3)*(DestinationX-x3)+(DestinationY-y3)*(DestinationY-y3));
+
+    double penalidade = 0; //CheckForObstacleBetweenTwoPoints(SourceX,SourceY,x1,y1)*50;
+	c.objective1=sqrt((x1-SourceX)*(x1-SourceX)+(y1-SourceY)*(y1-SourceY)) + penalidade;     //Alterar fitness function para incluir custo de rotação e penalidade de obstaculos
+	penalidade = 0; //CheckForObstacleBetweenTwoPoints(x1,y1,x2,y2)*50;
+	c.objective2=sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1)) + penalidade;
+	penalidade = 0; //CheckForObstacleBetweenTwoPoints(x2,y2,x3,y3)*50;
+	c.objective3=sqrt((x3-x2)*(x3-x2)+(y3-y2)*(y3-y2)) + penalidade;
+	penalidade = 0; //CheckForObstacleBetweenTwoPoints(x3,y3,DestinationX,DestinationY)*50;
+	c.objective4=sqrt((DestinationX-x3)*(DestinationX-x3)+(DestinationY-y3)*(DestinationY-y3)) + penalidade;
 	return true; // solution is accepted
 }
 
@@ -250,12 +118,13 @@ Path mutate(
 	double shrink_scale)
 {
 	Path X_new;
+	X_new = X_base;
 	bool in_range;
 	do{
-        /**
-           Gerar ponto qualquer na horizontal de outro ponto:
-                NewX = OldX
-        */
+
+           ///Gerar ponto qualquer na horizontal de outro ponto:
+            ///    NewX = OldX
+
 		in_range=true;
 		X_new=X_base;
 		X_new.x1+=0.2*(rnd01()-rnd01())*shrink_scale;       //Primeiro ponto deve estar na vertical/horizontal/diagonal do ponto inicial
@@ -283,6 +152,7 @@ Path crossover(
 	const std::function<double(void)> &rnd01)
 {
 	Path X_new;
+	X_new = X1;
 	double r;
 	r=rnd01();
 	X_new.x1=r*X1.x1+(1.0-r)*X2.x1;
@@ -296,6 +166,7 @@ Path crossover(
 	X_new.x3=r*X1.x3+(1.0-r)*X2.x3;
 	r=rnd01();
 	X_new.y3=r*X1.y3+(1.0-r)*X2.y3;
+
 	return X_new;
 }
 
@@ -339,23 +210,26 @@ void SO_report_generation(
 		<<last_generation.average_cost<<"\t"
 		<<last_generation.best_total_cost<<"\t"
 		<<best_genes.to_string()<<"\n";
+
 }
+
+
 
 
 int main()
 {
 
-    Environment Env1;
-    Env1.scan_state_from_file();
+    Env.scan_state_from_file();
 //    Estado* source = new Estado(Env1.getAgent().getX(),Env1.getAgent().getY(),Env1.getAgent().getFacing());
 //    Estado* destination = new Estado(Env1.getX_Target(),Env1.getY_Target(),2);
 
-    SourceX = Env1.getAgent().getX();
-    SourceY = Env1.getAgent().getY();
-    gridCols = Env1.getN_Cols();
-    gridRows = Env1.getN_Rows();
-    DestinationX = Env1.getX_Target();
-    DestinationY = Env1.getY_Target();
+    SourceX = Env.getAgent().getX();
+    SourceY = Env.getAgent().getY();
+    gridCols = Env.getN_Cols();
+    gridRows = Env.getN_Rows();
+    DestinationX = Env.getX_Target();
+    DestinationY = Env.getY_Target();
+    Matrix = Env.getMatrix();
 	output_file.open("results.txt");
 	output_file<<"step"<<"\t"<<"cost_avg"<<"\t"<<"cost_best"<<"\t"<<"solution_best"<<"\n";
 
@@ -383,18 +257,21 @@ int main()
 	ga_obj.solve();
 	cout << endl << SolutionX1 << "," << SolutionY1 << endl;
 
-    Env1.AddPontoIntermediarioToStateMatrix(SolutionX1, SolutionY1, 1);
-    Env1.AddPontoIntermediarioToStateMatrix(SolutionX2, SolutionY2, 2);
-    Env1.AddPontoIntermediarioToStateMatrix(SolutionX3, SolutionY3, 3);
-    Env1.print_state();
+    //Env1.AddPontoIntermediarioToStateMatrix(SolutionX1, SolutionY1, 1);
+    //Env1.AddPontoIntermediarioToStateMatrix(SolutionX2, SolutionY2, 2);
+    //Env1.AddPontoIntermediarioToStateMatrix(SolutionX3, SolutionY3, 3);
+    bresenham(2,1,19,16);
+    Env.print_state();
 
 	cout<<"The problem is optimized in "<<timer.toc()<<" seconds."<<endl;
 
 	output_file.close();
 
-    cout << endl;
-	cout << Env1.CheckForObstacleBetweenTwoPoints(2,2,2,19) << endl;
-	cout << Env1.CheckForObstacleBetweenTwoPoints(4,4,8,0) << endl;
+    //cout << endl;
+	//cout << Env.CheckForObstacleBetweenTwoPoints(2,2,2,19) << endl;
+	//cout << Env.CheckForObstacleBetweenTwoPoints(4,4,8,0) << endl;
+
+
 
 	return 0;
 }

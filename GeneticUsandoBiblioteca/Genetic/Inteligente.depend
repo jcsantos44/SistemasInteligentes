@@ -286,7 +286,7 @@
 
 1554859992 c:\c++\sistemasinteligentes\geneticusandobiblioteca\genetic\estado.h
 
-1556067511 source:c:\c++\sistemasinteligentes\geneticusandobiblioteca\genetic\main.cpp
+1556082321 source:c:\c++\sistemasinteligentes\geneticusandobiblioteca\genetic\main.cpp
 	<iostream>
 	<vector>
 	<string>
@@ -308,7 +308,7 @@
 	<math.h>
 	<iostream>
 
-1555987969 c:\c++\sistemasinteligentes\geneticusandobiblioteca\genetic\openga.hpp
+1556080161 c:\c++\sistemasinteligentes\geneticusandobiblioteca\genetic\openga.hpp
 	<vector>
 	<random>
 	<chrono>
