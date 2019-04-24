@@ -54,7 +54,7 @@ typedef EA::GenerationType<Path,IntermediateCost> Generation_Type;
 
 void init_genes(Path& p,const std::function<double(void)> &rnd01)
 {
-	// rnd01() gives a random number in 0~1
+	/// rnd01() gives a random number in 0~1
 
 	int i = 0.0+7*rnd01();
 
