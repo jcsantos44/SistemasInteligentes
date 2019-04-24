@@ -39,7 +39,6 @@ int bresenham(float x1, float y1, float x2, float y2)
             if (Matrix[x][y] == WALL)
             {
                 Obstacles++;
-                //cout << Obstacles << endl;
             }
         }
     }
@@ -87,15 +86,14 @@ void init_genes(Path& p,const std::function<double(void)> &rnd01)
 {
 	/// rnd01() gives a random number in 0~1
 
-	p.x1=0.0+10*rnd01();
-	p.y1=0.0+10*rnd01();
-	p.x2=0.0+10*rnd01();
-    p.y2=0.0+10*rnd01();
-	p.x3=0.0+10*rnd01();
-	p.y3=0.0+10*rnd01();        //gerar esses genes do jeito certo
+	p.x1=0.0+(gridRows-1)*rnd01();
+	p.y1=0.0+(gridCols-1)*rnd01();
+	p.x2=0.0+(gridRows-1)*rnd01();
+    p.y2=0.0+(gridCols-1)*rnd01();
+	p.x3=0.0+(gridRows-1)*rnd01();
+	p.y3=0.0+(gridCols-1)*rnd01();
 }
 
-//int getRotationCost (int )
 
 bool eval_solution(
 	const Path& p,
@@ -125,31 +123,30 @@ Path mutate(
 	const std::function<double(void)> &rnd01,
 	double shrink_scale)
 {
+    //shrink_scale = 6;
 	Path X_new;
-	X_new = X_base;
+	//X_new = X_base;
 	bool in_range;
 	do{
-
-           ///Gerar ponto qualquer na horizontal de outro ponto:
-            ///    NewX = OldX
-
 		in_range=true;
 		X_new=X_base;
-		X_new.x1+=0.2*(rnd01()-rnd01())*shrink_scale;       //Primeiro ponto deve estar na vertical/horizontal/diagonal do ponto inicial
 
-		in_range=in_range&&(X_new.x1>=0.0 && X_new.x1<10.0);
-		X_new.y1+=0.2*(rnd01()-rnd01())*shrink_scale;
-		in_range=in_range&&(X_new.y1>=0.0 && X_new.y1<10.0);
+		X_new.x1+=gridRows*(rnd01()-rnd01())*shrink_scale;
+		//cout << X_base.x1 << ", " << X_new.x1 << endl;
+		in_range=in_range&&(X_new.x1>=0.0 && X_new.x1<gridRows);//&&Matrix[X_new.x1][X_new.y1]!=WALL;
+		X_new.y1+=gridCols*(rnd01()-rnd01())*shrink_scale;
+		//cout << X_base.y1 << ", " << X_new.y1 << endl;
+		in_range=in_range&&(X_new.y1>=0.0 && X_new.y1<gridCols);//&&Matrix[X_new.x1][X_new.y1]!=WALL;
 
-		X_new.x2+=0.2*(rnd01()-rnd01())*shrink_scale;
-		in_range=in_range&&(X_new.x2>=0.0 && X_new.x2<10.0); //Segundo ponto deve estar na vertical/horizontal/diagonal do primeiro ponto intermediario
-		X_new.y2+=0.2*(rnd01()-rnd01())*shrink_scale;
-		in_range=in_range&&(X_new.y2>=0.0 && X_new.y2<10.0);
+		X_new.x2+=gridRows*(rnd01()-rnd01())*shrink_scale;
+		in_range=in_range&&(X_new.x2>=0.0 && X_new.x2<gridRows);//&&Matrix[X_new.x2][X_new.y2]!=WALL;
+		X_new.y2+=gridCols*(rnd01()-rnd01())*shrink_scale;
+		in_range=in_range&&(X_new.y2>=0.0 && X_new.y2<gridCols);//&&Matrix[X_new.x2][X_new.y2]!=WALL;
 
-		X_new.x3+=0.2*(rnd01()-rnd01())*shrink_scale;
-		in_range=in_range&&(X_new.x3>=0.0 && X_new.x3<10.0); //Terceiro ponto deve estar na vertical/horizontal/diagonal do segundo ponto intermediario
-		X_new.y3+=0.2*(rnd01()-rnd01())*shrink_scale;
-		in_range=in_range&&(X_new.y3>=0.0 && X_new.y3<10.0);
+		X_new.x3+=gridRows*(rnd01()-rnd01())*shrink_scale;
+		in_range=in_range&&(X_new.x3>=0.0 && X_new.x3<gridRows);//&&Matrix[X_new.x3][X_new.y3]!=WALL;
+		X_new.y3+=gridCols*(rnd01()-rnd01())*shrink_scale;
+		in_range=in_range&&(X_new.y3>=0.0 && X_new.y3<gridCols);//&&Matrix[X_new.x3][X_new.y3]!=WALL;
 	} while(!in_range);
 	return X_new;
 }
@@ -160,7 +157,7 @@ Path crossover(
 	const std::function<double(void)> &rnd01)
 {
 	Path X_new;
-	X_new = X1;
+	//X_new = X1;
 	double r;
 	r=rnd01();
 	X_new.x1=r*X1.x1+(1.0-r)*X2.x1;
@@ -248,7 +245,7 @@ int main()
 	ga_obj.problem_mode=EA::GA_MODE::SOGA;
 	ga_obj.multi_threading=false;
 	ga_obj.verbose=false;
-	ga_obj.population=200;
+	ga_obj.population=50;
 	ga_obj.generation_max=1000;
 	ga_obj.calculate_SO_total_fitness=calculate_SO_total_fitness;
 	ga_obj.init_genes=init_genes;
@@ -256,19 +253,18 @@ int main()
 	ga_obj.mutate=mutate;
 	ga_obj.crossover=crossover;
 	ga_obj.SO_report_generation=SO_report_generation;
-	ga_obj.best_stall_max=10;
-	ga_obj.elite_count=10;
-	ga_obj.crossover_fraction=0.7;
-	ga_obj.mutation_rate=0.2;
 	ga_obj.best_stall_max=100;
+	ga_obj.average_stall_max = 100;
 	ga_obj.elite_count=10;
+	ga_obj.crossover_fraction=0.5;
+	ga_obj.mutation_rate=0.3;
 	ga_obj.solve();
 	cout << endl << SolutionX1 << "," << SolutionY1 << endl;
 
     Env.AddPontoIntermediarioToStateMatrix(SolutionX1, SolutionY1, 1);
     Env.AddPontoIntermediarioToStateMatrix(SolutionX2, SolutionY2, 2);
     Env.AddPontoIntermediarioToStateMatrix(SolutionX3, SolutionY3, 3);
-    bresenham(2,1,19,16);
+    //bresenham(2,1,19,16);
     Env.print_state();
 
 	cout<<"The problem is optimized in "<<timer.toc()<<" seconds."<<endl;
