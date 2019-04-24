@@ -14,6 +14,7 @@
 using namespace std;
 
 int SourceX, SourceY, DestinationX, DestinationY;
+int gridCols, gridRows;
 
 struct Path
 {
@@ -57,126 +58,163 @@ void init_genes(Path& p,const std::function<double(void)> &rnd01)
 	/// rnd01() gives a random number in 0~1
 
 	int i = 0.0+7*rnd01();
+	int diagonal = gridCols < gridRows ? gridCols : gridRows;
 
 	if (i < 2)
     {
-        p.x1=SourceX;
-        p.y1=0.0+10*rnd01();
+        p.x1 = SourceX;
+        p.y1 = 0.0+10*rnd01();
     } else
     if (i >= 2 && i < 4)
     {
         p.x1=0.0+10*rnd01();
-        p.y1=SourceY;
+        p.y1 = SourceY;
     } else if (i == 4) /**SE*/
     {
-        int j = 0.0+10*rnd01() -  SourceX;
-        p.x1=SourceX+j;
-        p.y1=SourceY+j;
+        int difY = gridCols - SourceY;
+        int difX = gridRows - SourceX;
+        int menor = difY < difX ? difY : difX;
+        int r = 0.0 + menor*rnd01() -  SourceX;
+
+        p.x1 = SourceX + r;
+        p.y1 = SourceY + r;
     }
     else if (i == 5)  /**NE*/
     {
-        int r = 0.0+SourceX*rnd01();
+        int difY = gridCols - SourceY;
+        int difX = SourceX;
+        int menor = difY < difX ? difY : difX;
+        int r = 0.0+menor*rnd01();
+
         p.x1=SourceX-r;
         p.y1=SourceY+r;
     }
     else if (i == 6)  /**NW*/
     {
-        int r = 0.0+SourceX*rnd01();
+        int menor = SourceX < SourceY ? SourceX : SourceY;
+        int r = 0.0 + menor * rnd01();
         p.x1=SourceX-r;
         p.y1=SourceY-r;
     }
     else if (i == 7)  /**SW*/
     {
-        int r = 0.0+SourceY*rnd01();
+        int difY = SourceY;
+        int difX = gridRows - SourceX;
+        int menor = difY < difX ? difY : difX;
+        int r = 0.0+menor*rnd01();
         p.x1=SourceX+r;
         p.y1=SourceY-r;
     }
     else
     {
-        p.x1=0.0+10*rnd01();
-        p.y1=0.0+10*rnd01();
+        p.x1=0.0+gridRows*rnd01();
+        p.y1=0.0+gridCols*rnd01();
     }
 
    i = 0.0+7*rnd01();
 
 	if (i < 2)
     {
-        p.x2=p.x1;
-        p.y2=0.0+10*rnd01();
+        p.x2 = SourceX;
+        p.y2 = 0.0+10*rnd01();
     } else
     if (i >= 2 && i < 4)
     {
         p.x2=0.0+10*rnd01();
-        p.y2=p.y1;
+        p.y2 = SourceY;
     } else if (i == 4) /**SE*/
     {
-        int j = 0.0+10*rnd01() -  p.x1;
-        p.x2=p.x1+j;
-        p.y2=p.y1+j;
+        int difY = gridCols - SourceY;
+        int difX = gridRows - SourceX;
+        int menor = difY < difX ? difY : difX;
+        int r = 0.0 + menor*rnd01() -  SourceX;
+
+        p.x2 = SourceX + r;
+        p.y2 = SourceY + r;
     }
     else if (i == 5)  /**NE*/
     {
-        int r = 0.0+p.x1*rnd01();
-        p.x2=p.x1-r;
-        p.y2=p.y1+r;
+        int difY = gridCols - SourceY;
+        int difX = SourceX;
+        int menor = difY < difX ? difY : difX;
+        int r = 0.0+menor*rnd01();
+
+        p.x2=SourceX-r;
+        p.y2=SourceY+r;
     }
     else if (i == 6)  /**NW*/
     {
-        int r = 0.0+p.x1*rnd01();
-        p.x2=p.x1-r;
-        p.y2=p.y1-r;
+        int menor = SourceX < SourceY ? SourceX : SourceY;
+        int r = 0.0 + menor * rnd01();
+        p.x2=SourceX-r;
+        p.y2=SourceY-r;
     }
     else if (i == 7)  /**SW*/
     {
-        int r = 0.0+p.y1*rnd01();
-        p.x2=p.x1+r;
-        p.y2=p.y1-r;
+        int difY = SourceY;
+        int difX = gridRows - SourceX;
+        int menor = difY < difX ? difY : difX;
+        int r = 0.0+menor*rnd01();
+        p.x2=SourceX+r;
+        p.y2=SourceY-r;
     }
     else
     {
-        p.x2=0.0+10*rnd01();
-        p.y2=0.0+10*rnd01();
+        p.x2=0.0+gridRows*rnd01();
+        p.y2=0.0+gridCols*rnd01();
     }
 
     i = 0.0+7*rnd01();
 
 	if (i < 2)
     {
-        p.x3=p.x2;
-        p.y3=0.0+10*rnd01();
+        p.x3 = SourceX;
+        p.y3 = 0.0+10*rnd01();
     } else
     if (i >= 2 && i < 4)
     {
         p.x3=0.0+10*rnd01();
-        p.y3=p.y2;
+        p.y3 = SourceY;
     } else if (i == 4) /**SE*/
     {
-        int j = 0.0+10*rnd01() -  p.x2;
-        p.x3=p.x2+j;
-        p.y3=p.y2+j;
+        int difY = gridCols - SourceY;
+        int difX = gridRows - SourceX;
+        int menor = difY < difX ? difY : difX;
+        int r = 0.0 + menor*rnd01() -  SourceX;
+
+        p.x3 = SourceX + r;
+        p.y3 = SourceY + r;
     }
     else if (i == 5)  /**NE*/
     {
-        int r = 0.0+p.x2*rnd01();
-        p.x3=p.x2-r;
-        p.y3=p.y2+r;
+        int difY = gridCols - SourceY;
+        int difX = SourceX;
+        int menor = difY < difX ? difY : difX;
+        int r = 0.0+menor*rnd01();
+
+        p.x3=SourceX-r;
+        p.y3=SourceY+r;
     }
     else if (i == 6)  /**NW*/
     {
-        int r = 0.0+p.x2*rnd01();
-        p.x3=p.x2-r;
-        p.y3=p.y2-r;
+        int menor = SourceX < SourceY ? SourceX : SourceY;
+        int r = 0.0 + menor * rnd01();
+        p.x3=SourceX-r;
+        p.y3=SourceY-r;
     }
     else if (i == 7)  /**SW*/
     {
-        int r = 0.0+p.y2*rnd01();
-        p.x3=p.x2+r;
-        p.y3=p.y2-r;
+        int difY = SourceY;
+        int difX = gridRows - SourceX;
+        int menor = difY < difX ? difY : difX;
+        int r = 0.0+menor*rnd01();
+        p.x3=SourceX+r;
+        p.y3=SourceY-r;
     }
     else
     {
-        p.x3=0.0+10*rnd01();
-        p.y3=0.0+10*rnd01();
+        p.x3=0.0+gridRows*rnd01();
+        p.y3=0.0+gridCols*rnd01();
     }
 
 	//p.x2=10+15*rnd01();
@@ -314,6 +352,8 @@ int main()
 
     SourceX = Env1.getAgent().getX();
     SourceY = Env1.getAgent().getY();
+    gridCols = Env1.getN_Cols();
+    gridRows = Env1.getN_Rows();
     DestinationX = Env1.getX_Target();
     DestinationY = Env1.getY_Target();
 	output_file.open("results.txt");

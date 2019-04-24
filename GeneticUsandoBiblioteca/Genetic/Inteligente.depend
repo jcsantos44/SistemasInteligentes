@@ -325,3 +325,17 @@
 1556067687 source:c:\c++\sistemasinteligentes\geneticusandobiblioteca\genetic\environment.cpp
 	"environment.h"
 
+1556066158 source:c:\users\ferna\onedrive\documentos\sistemas inteligentes\sistemasinteligentes\geneticusandobiblioteca\genetic\agent.cpp
+	"agent.h"
+
+1556066158 c:\users\ferna\onedrive\documentos\sistemas inteligentes\sistemasinteligentes\geneticusandobiblioteca\genetic\agent.h
+	<iostream>
+
+1556076126 source:c:\users\ferna\onedrive\documentos\sistemas inteligentes\sistemasinteligentes\geneticusandobiblioteca\genetic\environment.cpp
+	"environment.h"
+
+1556076126 c:\users\ferna\onedrive\documentos\sistemas inteligentes\sistemasinteligentes\geneticusandobiblioteca\genetic\environment.h
+	<iostream>
+	<vector>
+	"agent.h"
+
